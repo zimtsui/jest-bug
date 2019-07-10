@@ -2,12 +2,10 @@
 
 ## 🐛 Bug Report
 
-A clear and concise description of what the bug is.
-
 ```js
-import Promise from 'bluebird';
+const Promise = require('bluebird');
 
-test.only('test 1', async () => {
+test('test 1', async () => {
     const f = (async () => { throw new Error('haha'); })();
     f.then(() => {});
     await expect(f).rejects.toThrow('haha');
@@ -17,14 +15,14 @@ test.only('test 1', async () => {
 
 this test fails.
 
-you have 4 ways to correct the code:
+but you have 4 ways to correct the code:
 
 1\. delete L1
 
 ```js
-// import Promise from 'bluebird';
+// const Promise = require('bluebird');
 
-test.only('test 1', async () => {
+test('test 1', async () => {
     const f = (async () => { throw new Error('haha'); })();
     f.then(() => {});
     await expect(f).rejects.toThrow('haha');
@@ -34,9 +32,9 @@ test.only('test 1', async () => {
 
 2\. delete L5
 ```js
-import Promise from 'bluebird';
+const Promise = require('bluebird');
 
-test.only('test 1', async () => {
+test('test 1', async () => {
     const f = (async () => { throw new Error('haha'); })();
     // f.then(() => {});
     await expect(f).rejects.toThrow('haha');
@@ -47,9 +45,9 @@ test.only('test 1', async () => {
 3\. delete L7
 
 ```js
-import Promise from 'bluebird';
+const Promise = require('bluebird');
 
-test.only('test 1', async () => {
+test('test 1', async () => {
     const f = (async () => { throw new Error('haha'); })();
     f.then(() => {});
     await expect(f).rejects.toThrow('haha');
@@ -60,9 +58,9 @@ test.only('test 1', async () => {
 4\. move L7 to L4
 
 ```js
-import Promise from 'bluebird';
+const Promise = require('bluebird');
 
-test.only('test 1', async () => {
+test('test 1', async () => {
     await expect(Promise.reject(new Error('haha'))).rejects.toThrow('haha');
     const f = (async () => { throw new Error('haha'); })();
     f.then(() => {});
@@ -79,20 +77,28 @@ Steps to reproduce the behavior:
 
 ## Expected behavior
 
-A clear and concise description of what you expected to happen.
-
 the results of tests above should be consistent.
 
 ## Link to repl or repo (highly encouraged)
 
-Please provide either a [repl.it demo](https://repl.it/languages/jest) or a minimal repository on GitHub.
+[this repo](https://github.com/zimtsui/jest-bug) is made speciall for this post.
 
-Issues without a reproduction link are likely to stall.
+```shell
+$ git clone https://github.com/zimtsui/jest-bug.git
+$ cd ./jest-bug
+$ npm i
+$ npm run test
+```
 
 ## Run `npx envinfo --preset jest`
 
-Paste the results here:
-
 ```bash
-
+  System:
+    OS: Linux 4.15 Ubuntu 18.04.2 LTS (Bionic Beaver)
+    CPU: (4) x64 Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz
+  Binaries:
+    Node: 10.16.0 - /usr/local/bin/node
+    npm: 6.10.0 - /usr/local/bin/npm
+  npmPackages:
+    jest: ^24.8.0 => 24.8.0 
 ```
